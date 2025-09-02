@@ -148,7 +148,7 @@ with torch.no_grad():
     # Calculate cosine similarity
     similarity = F.cosine_similarity(image_features.unsqueeze(1), text_features.unsqueeze(0), dim=-1)
     
-    # SPECS = max((similarity + 1) / 2, 0)
+    # SPECS
     specs_scores = torch.clamp((similarity + 1.0) / 2.0, min=0.0)
 
 # Output results
@@ -157,7 +157,16 @@ for i, score in enumerate(specs_scores.squeeze()):
     print(f" Text {i+1}: {score:.4f}")
 ```
 
+This shows that SPECS successfully assigns progressively higher scores to captions with more fine-grained and correct details:
 
+- **Text 1**: *"A British Shorthair cat with plush, bluish-gray fur is lounging on a deep green velvet sofa. The cat is partially tucked under a multi-colored woven jumper."*  
+  → **Score: 0.4293**
+
+- **Text 2**: *"A British Shorthair cat with plush, bluish-gray fur is lounging on a deep green velvet sofa. The cat is partially tucked under a multi-colored woven blanket."*  
+  → **Score: 0.4457**
+
+- **Text 3**: *"A British Shorthair cat with plush, bluish-gray fur is lounging on a deep green velvet sofa. The cat is partially tucked under a multi-colored woven blanket with fringed edges."*  
+  → **Score: 0.4583**
 
 
 #### Zero-shot classification
