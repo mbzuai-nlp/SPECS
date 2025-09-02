@@ -14,21 +14,6 @@ SPECS: Specificity-Enhanced CLIP-Score for Long Image Caption Evaluation
 - 🔥 **Efficiency** Provides a faster and more resource-efficient evaluation approach compared to computationally expensive LLM-based metrics.
 
 
-<!-- ## 📜 News
-🚀 [2024/7/3] Our paper has been accepted by ***ECCV2024***.
-
-🚀 [2024/7/3] We release the code of using Long-CLIP in ***SDXL***. For detailed information, you may refer to `SDXL/SDXL.md`.
-
-🚀 [2024/5/21] We update the paper and checkpoints after fixing the bug in DDP and add results in Urban-1k. Special thanks to @MajorDavidZhang for finding and refining this bug in DDP! Now the fine-tuning only takes ***0.5*** hours on *8 GPUs*!
-
-🚀 [2024/5/21] Urban-1k: a scaling-up version of Urban-200 dataset in the paper has been released at this [page](https://huggingface.co/datasets/BeichenZhang/Urban1k).
-
-🚀 [2024/4/1] The training code is released!
-
-🚀 [2024/3/25] The Inference code and models ([LongCLIP-B](https://huggingface.co/BeichenZhang/LongCLIP-B) and [LongCLIP-L](https://huggingface.co/BeichenZhang/LongCLIP-L)) are released!
-
-🚀 [2024/3/25] The [paper](https://arxiv.org/abs/2403.15378) is released! -->
-
 
 
 
@@ -39,7 +24,7 @@ SPECS: Specificity-Enhanced CLIP-Score for Long Image Caption Evaluation
 
 ### how to use
 
-Please first clone our [repo](https://github.com/XxFChen/SPECS.git) from github by running the following command.
+Please first clone our [repo](https://github.com/mbzuai-nlp/SPECS.git) from github by running the following command.
 
 ```shell
 git clone https://github.com/XxFChen/SPECS.git
