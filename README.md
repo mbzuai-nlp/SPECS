@@ -108,6 +108,7 @@ When download the ShareGPT4V dataset then use /SPECS/data/create_sharegpt4v.py t
 
 You can compute SPECS scores for an image–caption pair using the following code:
 
+
 ```python
 from PIL import Image
 import torch
@@ -154,8 +155,7 @@ with torch.no_grad():
 print("SPECS")
 for i, score in enumerate(specs_scores.squeeze()):
     print(f" Text {i+1}: {score:.4f}")
-
-
+```
 
 
 
