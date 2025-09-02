@@ -27,7 +27,7 @@ SPECS: Specificity-Enhanced CLIP-Score for Long Image Caption Evaluation
 Please first clone our [repo](https://github.com/mbzuai-nlp/SPECS.git) from github by running the following command.
 
 ```shell
-git clone https://github.com/XxFChen/SPECS.git
+git clone https://github.com/mbzuai-nlp/SPECS.git
 cd SPECS
 ```
 
