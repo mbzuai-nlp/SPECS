@@ -106,7 +106,7 @@ When download the ShareGPT4V dataset then use /SPECS/data/create_sharegpt4v.py t
 
 ### Evaluation
 
-#### Compute SPECS scores
+You can compute SPECS scores for an image–caption pair using the following code:
 
 ```python
 from PIL import Image
@@ -128,9 +128,12 @@ image = preprocess(Image.open(image_path)).unsqueeze(0).to(device)
 
 # Define text descriptions
 texts = [
-    "A British Shorthair cat with plush, bluish-gray fur is lounging on a deep green velvet sofa. The cat is partially tucked under a multi-colored woven jumper.",
-    "A British Shorthair cat with plush, bluish-gray fur is lounging on a deep green velvet sofa. The cat is partially tucked under a multi-colored woven blanket.",
-    "A British Shorthair cat with plush, bluish-gray fur is lounging on a deep green velvet sofa. The cat is partially tucked under a multi-colored woven blanket with fringed edges."
+    "A British Shorthair cat with plush, bluish-gray fur is lounging on a deep green velvet sofa. "
+    "The cat is partially tucked under a multi-colored woven jumper.",
+    "A British Shorthair cat with plush, bluish-gray fur is lounging on a deep green velvet sofa. "
+    "The cat is partially tucked under a multi-colored woven blanket.",
+    "A British Shorthair cat with plush, bluish-gray fur is lounging on a deep green velvet sofa. "
+    "The cat is partially tucked under a multi-colored woven blanket with fringed edges."
 ]
 
 # Process inputs
@@ -151,6 +154,8 @@ with torch.no_grad():
 print("SPECS")
 for i, score in enumerate(specs_scores.squeeze()):
     print(f" Text {i+1}: {score:.4f}")
+
+
 
 
 
