@@ -105,6 +105,56 @@ When download the ShareGPT4V dataset then use /SPECS/data/create_sharegpt4v.py t
 
 
 ### Evaluation
+
+#### Compute SPECS scores
+
+```python
+from PIL import Image
+import torch
+import torch.nn.functional as F
+from model import longclip
+
+# Device configuration
+device = "cuda" if torch.cuda.is_available() else "cpu"
+print(f"Using device: {device}")
+
+# Load SPECS model
+model, preprocess = longclip.load("spec.pt", device=device)
+model.eval()
+
+# Load image
+image_path = "SPECS/images/cat.png"
+image = preprocess(Image.open(image_path)).unsqueeze(0).to(device)
+
+# Define text descriptions
+texts = [
+    "A British Shorthair cat with plush, bluish-gray fur is lounging on a deep green velvet sofa. The cat is partially tucked under a multi-colored woven jumper.",
+    "A British Shorthair cat with plush, bluish-gray fur is lounging on a deep green velvet sofa. The cat is partially tucked under a multi-colored woven blanket.",
+    "A British Shorthair cat with plush, bluish-gray fur is lounging on a deep green velvet sofa. The cat is partially tucked under a multi-colored woven blanket with fringed edges."
+]
+
+# Process inputs
+text_tokens = longclip.tokenize(texts).to(device)
+
+# Get features and calculate SPECS
+with torch.no_grad():
+    image_features = model.encode_image(image)
+    text_features = model.encode_text(text_tokens)
+    
+    # Calculate cosine similarity
+    similarity = F.cosine_similarity(image_features.unsqueeze(1), text_features.unsqueeze(0), dim=-1)
+    
+    # SPECS = max((similarity + 1) / 2, 0)
+    specs_scores = torch.clamp((similarity + 1.0) / 2.0, min=0.0)
+
+# Output results
+print("SPECS")
+for i, score in enumerate(specs_scores.squeeze()):
+    print(f" Text {i+1}: {score:.4f}")
+
+
+
+
 #### Zero-shot classification
 
 To run zero-shot classification on imagenet dataset, run the following command after preparing the data
